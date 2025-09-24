@@ -3,7 +3,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.*;
-import guiPages.login;
+import guiPages.*;
 
 public class Main {
 
@@ -20,7 +20,12 @@ public class Main {
 
         JPanel loginPanel = new JPanel();
         loginPanel.setLayout(null);
-        mainPanel.add(new login(url,user,pass));
+        LoanCheck lc = new LoanCheck(url,user,pass);
+        login lp = new login(url,user,pass);
+        mainPanel.add(lp);
+        mainPanel.add(lc);
+        lc.setVisible(true);
+        lp.setVisible(true);
         frame.add(mainPanel);
 
 

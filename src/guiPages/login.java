@@ -25,8 +25,16 @@ public class login extends JPanel {
         passwordField.setBounds(10,85,300,25);
         add(passwordField);
 
+        JLabel age = new JLabel("age: ");
+        age.setBounds(10,110,80,35);
+        add(age);
+
+        JTextField ageField = new JTextField();
+        ageField.setBounds(10,135,300,25);
+        add(ageField);
+
         JButton submit = new JButton("Login");
-        submit.setBounds(10,115,75,25);
+        submit.setBounds(10,165,75,25);
         add(submit);
 
         submit.addActionListener(new ActionListener() {
@@ -34,6 +42,7 @@ public class login extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 String username = emailText.getText();
                 String password = new String(passwordField.getPassword());
+                int uage = Integer.parseInt(ageField.getText());
                 System.out.println(username);
                 System.out.println(password);
 
@@ -43,19 +52,20 @@ public class login extends JPanel {
                 try{
                     Class.forName("com.mysql.cj.jdbc.Driver");
                     conn = DriverManager.getConnection(url, user, pass);
-                    String sql = "INSERT INTO users (email, password) values(?,?)";
+                    String sql = "INSERT INTO users (email, password,age) values(?,?,?)";
                     stmt = conn.prepareStatement(sql);
                     stmt.setString(1,username);
                     stmt.setString(2,password);
+                    stmt.setInt(3,uage);
                     int rows = stmt.executeUpdate();
                     ResultSet rs = stmt.executeQuery("select * from users");
                     while(rs.next()){
                         System.out.print(rs.getString("email")+" "+ rs.getString("password"));
                     }
+                    setVisible(false);
                 } catch (SQLException | ClassNotFoundException ex) {
                     System.out.println(ex);
                 }
-
 
             }
         });
