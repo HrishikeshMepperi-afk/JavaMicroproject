@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.*;
@@ -12,28 +13,34 @@ public class Main {
     public static void createAndShowGui(){
         JFrame frame = new JFrame("LoanSanction");
         frame.setSize(400,500);
-        frame.setLayout(null);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        JPanel mainPanel = new JPanel(new CardLayout());
+
+        JPanel loginPanel = new JPanel();
+        loginPanel.setLayout(null);
+        mainPanel.add(loginPanel);
+        frame.add(mainPanel);
 
         JLabel email = new JLabel("Email:");
         email.setBounds(10,10,80,25);
-        frame.getContentPane().add(email);
+        loginPanel.add(email);
 
         JTextField emailText = new JTextField(20);
         emailText.setBounds(10,35,300,25);
-        frame.getContentPane().add(emailText);
+        loginPanel.add(emailText);
 
         JLabel password = new JLabel("Password: ");
         password.setBounds(10,60,80,25);
-        frame.add(password);
+        loginPanel.add(password);
 
         JPasswordField passwordField = new JPasswordField(20);
         passwordField.setBounds(10,85,300,25);
-        frame.add(passwordField);
+        loginPanel.add(passwordField);
 
         JButton submit = new JButton("Login");
         submit.setBounds(10,115,75,25);
-        frame.add(submit);
+        loginPanel.add(submit);
 
         submit.addActionListener(new ActionListener() {
             @Override
