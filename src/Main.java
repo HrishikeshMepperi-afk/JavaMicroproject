@@ -6,12 +6,12 @@ import java.sql.*;
 import guiPages.*;
 
 public class Main {
-
-    static String url = "jdbc:mysql://localhost:3306/microP";
-    static String user = "root";
-    static String pass = "070906";
-
     public static void createAndShowGui(){
+        try{
+            Class.forName("com.mysql.cj.jdbc.Driver");
+        } catch (Exception e){
+            System.out.println(e);
+        }
         JFrame frame = new JFrame("LoanSanction");
         frame.setSize(400,500);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -20,8 +20,8 @@ public class Main {
 
         JPanel loginPanel = new JPanel();
         loginPanel.setLayout(null);
-        LoanCheck lc = new LoanCheck(url,user,pass);
-        login lp = new login(url,user,pass);
+        LoanCheck lc = new LoanCheck();
+        login lp = new login();
         mainPanel.add(lp);
         mainPanel.add(lc);
         lc.setVisible(true);

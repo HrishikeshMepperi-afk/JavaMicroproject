@@ -3,7 +3,7 @@ package guiPages;
 import javax.swing.*;
 
 public class LoanCheck extends JPanel {
-    public LoanCheck(String url, String user, String pass) {
+    public LoanCheck() {
         setLayout(null);
 
         JLabel work = new JLabel("Where do you work: ");
