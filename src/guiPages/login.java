@@ -4,9 +4,10 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.*;
+import sql.Db;
 
 public class login extends JPanel {
-    public login(String url, String user, String pass){
+    public login(){
         setLayout(null);
 
         JLabel email = new JLabel("Email:");
@@ -46,24 +47,11 @@ public class login extends JPanel {
                 System.out.println(username);
                 System.out.println(password);
 
-                Connection conn = null;
-                PreparedStatement stmt = null;
-
                 try{
-                    Class.forName("com.mysql.cj.jdbc.Driver");
-                    conn = DriverManager.getConnection(url, user, pass);
-                    String sql = "INSERT INTO users (email, password,age) values(?,?,?)";
-                    stmt = conn.prepareStatement(sql);
-                    stmt.setString(1,username);
-                    stmt.setString(2,password);
-                    stmt.setInt(3,uage);
-                    int rows = stmt.executeUpdate();
-                    ResultSet rs = stmt.executeQuery("select * from users");
-                    while(rs.next()){
-                        System.out.print(rs.getString("email")+" "+ rs.getString("password"));
-                    }
+                    Db db = new Db();
+                    db.insertUsers(username , password, uage);
                     setVisible(false);
-                } catch (SQLException | ClassNotFoundException ex) {
+                } catch (Exception ex) {
                     System.out.println(ex);
                 }
 
