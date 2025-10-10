@@ -26,14 +26,6 @@ public class login extends JPanel {
         passwordField.setBounds(10,85,300,25);
         add(passwordField);
 
-        JLabel age = new JLabel("age: ");
-        age.setBounds(10,110,80,35);
-        add(age);
-
-        JTextField ageField = new JTextField();
-        ageField.setBounds(10,135,300,25);
-        add(ageField);
-
         JButton submit = new JButton("Login");
         submit.setBounds(10,165,75,25);
         add(submit);
@@ -43,13 +35,12 @@ public class login extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 String username = emailText.getText();
                 String password = new String(passwordField.getPassword());
-                int uage = Integer.parseInt(ageField.getText());
                 System.out.println(username);
                 System.out.println(password);
 
                 try{
                     Db db = new Db();
-                    db.insertUsers(username , password, uage);
+                    db.insertUsers(username , password);
                     setVisible(false);
                 } catch (Exception ex) {
                     System.out.println(ex);

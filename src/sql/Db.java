@@ -8,13 +8,12 @@ public class Db {
     static String url = "jdbc:mysql://localhost:3306/microP";
     static String user = "root";
     static String pass = "070906";
-    public void insertUsers(String email, String passwd, int age ) throws Exception{
+    public void insertUsers(String email, String passwd) throws Exception{
         con = DriverManager.getConnection(url,user,pass);
-        String query = "INSERT INTO users (email, password,age) values(?,?,?)";
+        String query = "INSERT INTO users (email, password) values(?,?)";
         stmt = con.prepareStatement(query);
         stmt.setString(1,email);
         stmt.setString(2,passwd);
-        stmt.setInt(3,age);
         int exec = stmt.executeUpdate();
         if(exec>0){
             System.out.println("stuff got executed");

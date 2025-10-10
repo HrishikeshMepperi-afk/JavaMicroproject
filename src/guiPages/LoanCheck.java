@@ -22,6 +22,16 @@ public class LoanCheck extends JPanel {
         salT.setBounds(10, 85, 300, 25);
         add(salT);
 
+        JLabel cred = new JLabel("Credit Score: ");
+        cred.setBounds(10,110,200,25);
+        add(cred);
+
+        JTextField credT = new JTextField();
+        credT.setBounds(10, 135, 300, 25);
+        add(credT);
+
+
+
 
     }
 }

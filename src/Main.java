@@ -25,7 +25,7 @@ public class Main {
         mainPanel.add(lp);
         mainPanel.add(lc);
         lc.setVisible(true);
-        lp.setVisible(true);
+        lp.setVisible(false);
         frame.add(mainPanel);
 
 
