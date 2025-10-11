@@ -26,6 +26,10 @@ public class login extends JPanel {
         passwordField.setBounds(10,85,300,25);
         add(passwordField);
 
+        JLabel warning = new JLabel("");
+        warning.setBounds(10,120,250,25);
+        add(warning);
+
         JButton submit = new JButton("Login");
         submit.setBounds(10,165,75,25);
         add(submit);
@@ -39,11 +43,15 @@ public class login extends JPanel {
                     Db db = new Db();
                     if (!db.checkUser(username)){
                         db.insertUsers(username , password);
+                        setVisible(false);
                     }
                     else{
                         System.out.println("something went wrong");
+                        emailText.setText("");
+                        passwordField.setText("");
+                        warning.setText("this email is already linked to an account");
                     }
-                    setVisible(false);
+
                 } catch (Exception ex) {
                     System.out.println(ex);
                 }
