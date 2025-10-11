@@ -35,12 +35,14 @@ public class login extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 String username = emailText.getText();
                 String password = new String(passwordField.getPassword());
-                System.out.println(username);
-                System.out.println(password);
-
                 try{
                     Db db = new Db();
-                    db.insertUsers(username , password);
+                    if (!db.checkUser(username)){
+                        db.insertUsers(username , password);
+                    }
+                    else{
+                        System.out.println("something went wrong");
+                    }
                     setVisible(false);
                 } catch (Exception ex) {
                     System.out.println(ex);

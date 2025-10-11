@@ -1,6 +1,8 @@
 package guiPages;
 
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class LoanCheck extends JPanel {
     public LoanCheck() {
@@ -30,7 +32,18 @@ public class LoanCheck extends JPanel {
         credT.setBounds(10, 135, 300, 25);
         add(credT);
 
+        JButton submit = new JButton();
+        submit.setBounds(10,170,100,20);
+        submit.setText("submit");
+        add(submit);
 
+        submit.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
 
 
     }
