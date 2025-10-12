@@ -1,8 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.sql.*;
+
 import guiPages.*;
 
 public class Main {
@@ -21,10 +19,13 @@ public class Main {
         JPanel loginPanel = new JPanel();
         loginPanel.setLayout(null);
         LoanCheck lc = new LoanCheck();
+        register rp = new register();
         login lp = new login();
-        mainPanel.add(lp);
+        mainPanel.add(rp);
         mainPanel.add(lc);
-        lc.setVisible(true);
+        mainPanel.add(lp);
+        lc.setVisible(false);
+        rp.setVisible(false);
         lp.setVisible(true);
         frame.add(mainPanel);
 

@@ -11,6 +11,10 @@ public class Db {
         con = DriverManager.getConnection(url,user,pass);
     }
 
+    public void conClose() throws Exception{
+        con.close();
+    }
+
     public void insertUsers(String email, String passwd) throws Exception{
         int number = selectUsers();
         String query = "INSERT INTO users (email, password, userNo) values(?,?,?)";
@@ -48,6 +52,22 @@ public class Db {
         rs.close();
         stmt.close();
         return result;
+    }
+
+    public boolean userAuth(String email, String password) throws Exception{
+        String sql = "select 1 from users where email = ? and password = ? limit 1";
+        try (PreparedStatement stmt = con.prepareStatement(sql)) {
+            stmt.setString(1, email);
+            stmt.setString(2, password);
+            ResultSet rs = stmt.executeQuery();
+            boolean result = rs.next();
+            rs.close();
+            return result;
+        } catch (SQLException e){
+            System.out.println("this issue is raised in the method userAuth");
+            System.out.println(e);
+            return false;
+        }
     }
 
 }
