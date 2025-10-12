@@ -1,54 +1,56 @@
 package guiPages;
 
+import sql.Db;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.*;
-import sql.Db;
 
 public class login extends JPanel {
     public login(){
         setLayout(null);
 
-        JLabel email = new JLabel("Email:");
-        email.setBounds(10,10,80,25);
+        JLabel email = new JLabel("email:");
+        email.setBounds(10,15,40,25);
         add(email);
 
-        JTextField emailText = new JTextField(20);
-        emailText.setBounds(10,35,300,25);
-        add(emailText);
+        JTextField emailT = new JTextField();
+        emailT.setBounds(10,45,300,25);
+        add(emailT);
 
-        JLabel password = new JLabel("Password: ");
-        password.setBounds(10,60,80,25);
+        JLabel password = new JLabel("Password:");
+        password.setBounds(10,75,70, 24);
         add(password);
 
-        JPasswordField passwordField = new JPasswordField(20);
-        passwordField.setBounds(10,85,300,25);
-        add(passwordField);
+        JTextField passwordT = new JTextField();
+        passwordT.setBounds(10,105,300,25);
+        add(passwordT);
 
-        JButton submit = new JButton("Login");
-        submit.setBounds(10,165,75,25);
+        JButton submit = new JButton("login");
+        submit.setBounds(10,135,75,25);
         add(submit);
+
+        JLabel label = new JLabel("test");
+        label.setBounds(10,165,70,24);
+        add(label);
 
         submit.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String username = emailText.getText();
-                String password = new String(passwordField.getPassword());
+                String email = emailT.getText();
+                String password = passwordT.getText();
                 try{
                     Db db = new Db();
-                    if (!db.checkUser(username)){
-                        db.insertUsers(username , password);
+                    if (db.userAuth(email,password)){
+                       label.setText("passed");
                     }
                     else{
-                        System.out.println("something went wrong");
+                        label.setText("failed");
                     }
-                    setVisible(false);
-                } catch (Exception ex) {
-                    System.out.println(ex);
+                } catch (Exception ex){
+                    System.out.println("something went wrong");
                 }
-
             }
         });
+
     }
 }
