@@ -3,6 +3,7 @@ package guiPages;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 
 public class LoanCheck extends JPanel {
     public LoanCheck() {
@@ -32,19 +33,40 @@ public class LoanCheck extends JPanel {
         credT.setBounds(10, 135, 300, 25);
         add(credT);
 
-        JButton submit = new JButton();
-        submit.setBounds(10,170,100,20);
+        JLabel label = new JLabel("Submit identification proof: ");
+        label.setBounds(10,170, 190,20);
+        add(label);
+
+        JButton pdf = new JButton("upload");
+        pdf.setBounds(10,200,100,20);
+        add(pdf);
+
+        JButton submit = new JButton("submit");
+        submit.setBounds(10,245,100,20);
         submit.setText("submit");
         add(submit);
 
-        submit.addActionListener(new ActionListener() {
-
+        pdf.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                JFileChooser fileChooser = new JFileChooser();
+                //this makes it so that only pdfs are accepted
+                fileChooser.setFileFilter(new javax.swing.filechooser.FileNameExtensionFilter("PDF Documents", "pdf"));
+                int result = fileChooser.showOpenDialog(null);
+                if (result == JFileChooser.APPROVE_OPTION){
+                    File selectedFile = fileChooser.getSelectedFile();
+                    //the null here makes it independent to the rest of the panels
+                    JOptionPane.showMessageDialog(null,"selected file: " + selectedFile.getPath());
+                }
             }
         });
 
+       submit.addActionListener(new ActionListener() {
+           @Override
+           public void actionPerformed(ActionEvent e) {
+
+           }
+       });
 
     }
 }

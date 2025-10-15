@@ -24,9 +24,9 @@ public class Main {
         mainPanel.add(rp);
         mainPanel.add(lc);
         mainPanel.add(lp);
-        lc.setVisible(false);
+        lc.setVisible(true);
         rp.setVisible(false);
-        lp.setVisible(true);
+        lp.setVisible(false);
         frame.add(mainPanel);
 
 

@@ -59,13 +59,12 @@ public class Db {
         try (PreparedStatement stmt = con.prepareStatement(sql)) {
             stmt.setString(1, email);
             stmt.setString(2, password);
-            ResultSet rs = stmt.executeQuery();
-            boolean result = rs.next();
-            rs.close();
-            return result;
+            try (ResultSet rs = stmt.executeQuery()){
+                return rs.next();
+            }
         } catch (SQLException e){
             System.out.println("this issue is raised in the method userAuth");
-            System.out.println(e);
+            e.printStackTrace();
             return false;
         }
     }
