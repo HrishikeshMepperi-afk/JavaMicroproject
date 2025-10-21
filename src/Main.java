@@ -21,12 +21,14 @@ public class Main {
         LoanCheck lc = new LoanCheck();
         register rp = new register();
         login lp = new login();
+        PickLoan pl = new PickLoan();
         mainPanel.add(rp);
         mainPanel.add(lc);
         mainPanel.add(lp);
-        lc.setVisible(true);
+        mainPanel.add(pl);
+        lc.setVisible(false);
         rp.setVisible(false);
-        lp.setVisible(false);
+        pl.setVisible(true);
         frame.add(mainPanel);
 
 
